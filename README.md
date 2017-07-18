@@ -26,3 +26,23 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deploying to GitLab Pages
+Replace `GITLAB_USER` and `GITLAB_PROJECT` with the your gitlab username and gitlab project name
+Add the following content in .gitlab-ci.yml
+```
+image: node:latest
+
+pages:
+  stage: deploy
+  script:
+  - npm install
+  - node ./node_modules/@angular/cli/bin/ng build --aot=true --environment=prod --sourcemap=false --base-href="https://GITLAB_USER.gitlab.io/GITLAB_PROJECT/"
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+```
+
+Replace `dist` path for `outDir` in `angular-cli.json` and `tsconfig.json` with `public` for gitlab

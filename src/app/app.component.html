@@ -1,3 +1,44 @@
-<h1>
-  {{title}}
-</h1>
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter Name">
+    </md-input-container>
+  </div>
+
+  <md-table #table [dataSource]="dataSource" mdSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name Column -->
+    <ng-container cdkColumnDef="name">
+      <md-header-cell *cdkHeaderCellDef md-sort-header> Name </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container cdkColumnDef="symbol">
+      <md-header-cell *cdkHeaderCellDef md-sort-header> Symbol </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.symbol}} </md-cell>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container cdkColumnDef="price">
+      <md-header-cell *cdkHeaderCellDef md-sort-header> Price </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.price}} </md-cell>
+    </ng-container>
+
+    <!-- Net Column -->
+    <ng-container cdkColumnDef="net">
+      <md-header-cell *cdkHeaderCellDef md-sort-header> Net </md-header-cell>
+      <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.net}} </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+
+  <!-- Paginator -->
+  <md-paginator #paginator [length]="exampleDatabase.data.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]">
+  </md-paginator>
+</div>
