@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --target=production -aot true -sm false --environment prod --extract-css false && npm run sw",
-    "test": "ng test",
+    "build": "ng build --target=production -aot false -sm false --environment prod --extract-css false && npm run sw",
+    "test": "ng help",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sw": "sw-precache --root=public --config=sw-precache-config.js"
@@ -44,7 +44,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "protractor": "~5.1.0",
-    "sw-precache": "^5.0.0",   
+    "sw-precache": "^5.0.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0"
